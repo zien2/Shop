@@ -1,61 +1,55 @@
-## 商超市场（vue-rabbit）
+# 商超市场（vue-rabbit）
 
-一个基于 Vue 3 + Vite 的电商前端项目，包含首页、分类、详情、购物车、结算、支付、会员中心等模块。
+基于 Vue 3 的电商前端演示项目，包含首页、分类、商品详情、购物车、结算、支付和会员中心等页面。
 
-### 技术栈
+> **项目范围：**本仓库提供前端，不包含电商后端。商品、账户和订单等操作依赖外部小兔鲜演示 API；该服务的可用性和测试账号由服务端决定。
+
+## 技术栈
+
 - Vue 3（Composition API）
-- Vite 4
+- Vite 7
 - Vue Router 4
-- Pinia + pinia-plugin-persistedstate
-- Element Plus（按需引入，Sass 主题覆盖）
+- Pinia、pinia-plugin-persistedstate
+- Element Plus、Sass
 - Axios、@vueuse/core、dayjs
 
-### 快速开始
+## 本地运行
+
+需要安装 Node.js 和 npm。
+
 ```bash
-# 安装依赖（推荐 ci 保持锁定）
 npm ci
-
-# 本地启动（默认 http://localhost:5173/）
 npm run dev
+```
 
-# 构建产物
+开发服务器默认地址为 `http://localhost:5173/`。生产构建和本地预览：
+
+```bash
 npm run build
-
-# 本地预览构建产物
 npm run preview
 ```
 
-### 目录结构
+## 页面与目录
+
 ```
 src/
-  apis/           # 后端接口封装（按业务拆分）
-  components/     # 通用业务组件（如 XtxSku、ImageView）
-  composables/    # 可复用逻辑（useCountDown 等）
+  apis/           # 按业务拆分的接口封装
+  components/     # 通用业务组件
+  composables/    # 可复用逻辑
   directives/     # 自定义指令
-  router/         # 路由配置
-  stores/         # Pinia 状态（user/cart/category）
-  styles/         # 主题变量与 Element 样式覆盖
-  utils/http.js   # Axios 二次封装（拦截器、鉴权、错误提示）
-  views/          # 页面模块（Home/Detail/Checkout/Pay/...）
+  router/         # 页面路由
+  stores/         # Pinia 状态（用户、购物车、分类）
+  styles/         # 主题变量和 Element Plus 样式
+  utils/http.js   # Axios 请求封装
+  views/          # 首页、详情、结算、支付等页面
 ```
 
-### 环境变量
-- 默认接口地址在 `src/utils/http.js` 中配置：
-  - `http://pcapi-xiaotuxian-front-devtest.itheima.net`
-- 如需切换环境，请修改 `baseURL` 或在封装处按需读取 `import.meta.env`。
+## 接口说明
 
-### 常见问题（FAQ）
-- 无法登录 / 400 Bad Request：
-  - 确认测试账号是否有效；
-  - 检查是否存在首尾空格；
-  - 确认 `baseURL` 与协议（http/https）是否与服务端一致。
-- 跨域/代理：
-  - 本项目直接使用完整域名；如需本地代理，可在 `vite.config.js` 中配置 `server.proxy`。
+当前演示 API 地址在 `src/utils/http.js` 中配置，指向小兔鲜前端测试服务。演示服务可能变更或不可用；若要接入自己的后端，请调整请求基础地址及接口适配，并处理相应的跨域配置。
 
-### 开发建议
-- 统一通过 `src/apis/*` 调用后端，避免在视图内直接写 `axios`。
-- 组件拆分颗粒度以“可复用且职责单一”为准；业务状态统一放在 Pinia。
-- 使用 `styles/var.scss` 调整主题色，`styles/element/index.scss` 定制组件样式。
+本项目没有自带后端，因此本地前端能启动不代表登录、支付或订单流程可以独立运行。
 
-### 相关文档
-- 技术栈与面试题清单见：`TECH_STACK_AND_INTERVIEW.md`
+## 相关文档
+
+[技术栈与面试题清单](TECH_STACK_AND_INTERVIEW.md)
